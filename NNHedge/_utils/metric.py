@@ -11,6 +11,7 @@ def evaluate_model(Y):
     metric = {
         "Entropic Loss Measure (ERM)" : entropic_loss(Y),
         "Mean" : Y.mean(),
+        "Std" : Y.std(),
         "VaR99" : Y.quantile(0.01),
         "VaR95" : Y.quantile(0.05),
         "VaR90" : Y.quantile(0.1),
