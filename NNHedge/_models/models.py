@@ -25,7 +25,7 @@ class SpanMLP(nn.Module):
         return out 
     
 class Net(nn.Module):
-    def __init__(self, span_lenght):
+    def __init__(self):
         super(Net, self).__init__()
         self.lin1 = nn.Linear(span_lenght, 16)
         self.lin2 = nn.Linear(16, 1)
