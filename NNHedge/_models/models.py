@@ -23,19 +23,6 @@ class SpanMLP(nn.Module):
         X = self.tanh2(self.lin2(X))
         out = self.tanh(self.lin3(X))
         return out 
-    
-class Net(nn.Module):
-    def __init__(self):
-        super(Net, self).__init__()
-        self.lin1 = nn.Linear(span_lenght, 16)
-        self.lin2 = nn.Linear(16, 1)
-        self.sigmoid1 = nn.Sigmoid();
-        
-    def forward(self, X):
-        X = self.lin1(X)
-        X = self.lin2(X)
-        out = self.sigmoid1(X)
-        return out    
 
 class RNNNet(nn.Module):
     def __init__(self):
@@ -150,5 +137,6 @@ def get_model(MODEL_TYPE:str, span_length:int):
         model = TCN(span_length,1,[5])
     elif MODEL_TYPE =='ATTENTION':
         model = AttentionNet(span_length)
+                          
 
     return model 
