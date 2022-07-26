@@ -19,14 +19,22 @@ def single_epoch_train(model, optimizer, trainloader, loss_func, epoch, model_ty
         
          # Zero the parameter gradients
         optimizer.zero_grad()
-        
+        # z = 0
+        # for i in range (ts-1):
+            #z = z + model[i](span[i]) * (span[i+1] - span[i])
         # Forward + Backward + Optimize
-        outputs = model(span)
-
-        loss = loss_func(outputs * (Sn - Sn_1) - C + torch.max(Sn - K, torch.zeros(256, 1)), torch.zeros(256, 1))
+        outputs = model(span) #uniquement un reseau de neurone
+        #output = delta en 0
+        # Sn - Sn-1 = increment du spot 
+        # avoir un vect de S de la taille de discretisation de la maturite
+        # outputs(de s0) * (s1-s0) + output( de s1) *(s2-s1) + ...
+        # loss = loss_func(z - C (+/-) torch.max(span[ts-1] - K, torch.zeros(256, 1)), torch.zeros(256, 1))
+        # construction de notre cout de hedge - Cout de friction - payoff
+        loss = loss_func(outputs * (Sn - Sn_1) - C - torch.max(Sn - K, torch.zeros(256, 1)), torch.zeros(256, 1))
         loss.backward()
         optimizer.step()
-        
+        # un seul reseau de neurone qui prend le spot en 0, en 1 ..
+        # soit on prend un model qui prend deux input le temps et le spot
          # Print statistics
         running_loss += loss.item()
 
