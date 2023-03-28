@@ -1,8 +1,10 @@
 # NNHedge
 __NNHedge__ is a PyTorch based framework for Neural Derivative Hedging.  
-The following repository was implemented to ease the experiments of our paper :  
+The following repository was implemented to ease the experiments of the paper:  
 
 - [Neural Networks for Derivative Hedging](https://arxiv.org/abs/2112.10084).
+
+And it's serve as a base for the "Deep Hedging on Bitcoin option portfolio" from Naomie Halioua Master Thesis - link to follow. 
 
 ## Installation Guide
 To build and develop from source, clone this repository via
